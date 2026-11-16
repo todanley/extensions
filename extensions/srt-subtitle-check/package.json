@@ -1,0 +1,98 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "srt-subtitle-check",
+  "title": "SRT Subtitle Check",
+  "description": "Lint SubRip (.srt) subtitles from the clipboard or a selected file for overlaps, reading speed, and line length.",
+  "icon": "icon.png",
+  "author": "todanley",
+  "platforms": [
+    "macOS"
+  ],
+  "categories": [
+    "Developer Tools",
+    "Media"
+  ],
+  "keywords": [
+    "srt",
+    "subtitle",
+    "subtitles",
+    "captions",
+    "lint",
+    "cps",
+    "overlap"
+  ],
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "check-clipboard-subtitles",
+      "title": "Check Clipboard Subtitles",
+      "description": "Lint SubRip (.srt) text on the clipboard and show issues, CPS, and overlaps.",
+      "mode": "view"
+    },
+    {
+      "name": "check-selected-subtitles",
+      "title": "Check Selected Subtitles",
+      "description": "Lint a .srt file selected in Finder and show issues, CPS, and overlaps.",
+      "mode": "view"
+    }
+  ],
+  "preferences": [
+    {
+      "name": "maxCharsEn",
+      "type": "textfield",
+      "required": false,
+      "title": "Max Characters per Line (Latin)",
+      "description": "Maximum graphemes per line for mostly Latin cues. Default is 42.",
+      "default": "42",
+      "placeholder": "42"
+    },
+    {
+      "name": "maxCharsCjk",
+      "type": "textfield",
+      "required": false,
+      "title": "Max Characters per Line (CJK)",
+      "description": "Maximum graphemes per line for mostly CJK cues. Default is 16.",
+      "default": "16",
+      "placeholder": "16"
+    },
+    {
+      "name": "maxCpsEn",
+      "type": "textfield",
+      "required": false,
+      "title": "Max Characters per Second (Latin)",
+      "description": "Maximum reading speed for mostly Latin cues. Default is 21.",
+      "default": "21",
+      "placeholder": "21"
+    },
+    {
+      "name": "maxCpsCjk",
+      "type": "textfield",
+      "required": false,
+      "title": "Max Characters per Second (CJK)",
+      "description": "Maximum reading speed for mostly CJK cues. Default is 9.",
+      "default": "9",
+      "placeholder": "9"
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.103.6"
+  },
+  "devDependencies": {
+    "@raycast/eslint-config": "^2.2.0",
+    "@types/node": "22.13.10",
+    "@types/react": "19.0.10",
+    "eslint": "^9.22.0",
+    "prettier": "^3.5.3",
+    "tsx": "^4.19.0",
+    "typescript": "^5.8.2"
+  },
+  "scripts": {
+    "build": "ray build",
+    "dev": "ray develop",
+    "fix-lint": "ray lint --fix",
+    "lint": "ray lint",
+    "prepublishOnly": "echo \"\\n\\nIt seems like you are trying to publish the Raycast extension to npm.\\n\\nIf you did intend to publish it to npm, remove the \\`prepublishOnly\\` script and rerun \\`npm publish\\` again.\\nIf you wanted to publish it to the Raycast Store instead, use \\`npm run publish\\` instead.\\n\\n\" && exit 1",
+    "publish": "npx @raycast/api@latest publish",
+    "test": "node --import tsx --test src/engine.test.ts src/tools.test.ts"
+  }
+}
